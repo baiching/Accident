@@ -22,12 +22,11 @@ def mean_square_error(W, X, y, m, lambd = 0.01):
     l2_reg = lambd * np.sum(W**2)
     return np.sum(np.square(y - y_hat))/m + l2_reg, y_hat
 
-def train(W, X_train, y_train, m, learning_rate=0.01):
+def train(W, X_train, y_train, m, learning_rate=0.01, lambd = 0.01):
     for i in range(50):
-        error, y_hat = mean_absolute_error(W, X_train, y_train, m)
+        error, y_hat = mean_square_error(W, X_train, y_train, m)
         #dW = np.subtract(y_train, y_hat.reshape(len(y_hat), 1) * (- X_train)).mean()*2
-        dW = np.absolute(-X_train).mean()
-        W = W - learning_rate * dW
+        W = W - learning_rate * (((-2/X_train.shape[0]) * (X_train.dot(y_i - y_hat))) + 2 * lambd * W)
         print("epoch "+ str(i)+ " " + str(error))
         
 # print(train(W, X_train, y_train, m, 0.01))

@@ -46,6 +46,6 @@ def SGD(W, X_train, y_train, m, batch_size, learning_rate=0.01, lambd = 0.01):
             # update
             W = W - learning_rate * (((-2/X_i.shape[0]) * (X_i.dot(y_i - y_hat))) + 2 * lambd * W)
             
-        print("epoch " + str(i+1) + " :" + " loss: "+"accuracy :" + str(error_per_epoch.mean()))
+        print("epoch " + str(epoch+1) + " :" + " loss: " + str(error_per_epoch.mean()))
         
 SGD(W, X_train, y_train, m, 2, 0.01)
